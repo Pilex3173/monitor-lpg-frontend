@@ -15,20 +15,20 @@
   <script>
     async function fetchStok() {
       const container = document.getElementById('stok-container');
-      container.innerHTML = '<p>Memuat data stok...</p>';
+      container.innerHTML = '<p>🔄 Memuat data stok...</p>';
 
       try {
-        const response = await fetch('http://84.247.174.222:5000/api/stok'); // Ganti IP ini jika perlu
+        const response = await fetch('https://map.pilex.xyz/api/stok'); // ✅ gunakan domain
         const data = await response.json();
 
-        if (Object.keys(data).length === 0) {
-          container.innerHTML = '<p>Belum ada data stok tersimpan.</p>';
+        if (!data || Object.keys(data).length === 0) {
+          container.innerHTML = '<p>❗ Belum ada data stok tersimpan.</p>';
           return;
         }
 
         let html = `
           <table class="table table-bordered table-striped">
-            <thead>
+            <thead class="table-dark">
               <tr>
                 <th>No</th>
                 <th>No HP / Email</th>
@@ -54,14 +54,14 @@
         html += '</tbody></table>';
         container.innerHTML = html;
       } catch (error) {
-        container.innerHTML = '<p class="text-danger">Gagal mengambil data stok. Pastikan server aktif dan IP benar.</p>';
+        container.innerHTML = '<p class="text-danger">🚫 Gagal mengambil data stok. Pastikan server backend di <code>map.pilex.xyz</code> aktif dan dapat diakses.</p>';
         console.error(error);
       }
     }
 
+    // 🔄 Load pertama & refresh tiap 30 detik
     fetchStok();
-    setInterval(fetchStok, 30000); // auto refresh tiap 30 detik
+    setInterval(fetchStok, 30000);
   </script>
 </body>
 </html>
-

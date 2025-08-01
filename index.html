@@ -18,7 +18,7 @@
       container.innerHTML = '<p>🔄 Memuat data stok...</p>';
 
       try {
-        const response = await fetch('https://map.pilex.xyz/api/stok'); // ✅ gunakan domain
+        const response = await fetch('https://api.pilex.xyz/map/stok'); // ✅ Sesuai domain HTTPS
         const data = await response.json();
 
         if (!data || Object.keys(data).length === 0) {
@@ -54,7 +54,7 @@
         html += '</tbody></table>';
         container.innerHTML = html;
       } catch (error) {
-        container.innerHTML = '<p class="text-danger">🚫 Gagal mengambil data stok. Pastikan server backend di <code>map.pilex.xyz</code> aktif dan dapat diakses.</p>';
+        container.innerHTML = '<p class="text-danger">🚫 Gagal mengambil data stok. Pastikan server backend di <code>api.pilex.xyz</code> aktif dan dapat diakses.</p>';
         console.error(error);
       }
     }
